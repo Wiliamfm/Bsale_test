@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from db_models import db, Product as db_product, Category as db_category
 from models import Product, Category
 
-ITEMS_PER_PAGE= 20
+ITEMS_PER_PAGE= 10
 
 app = FastAPI()
 @app.get("/")
