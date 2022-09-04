@@ -34,7 +34,7 @@ async def root(q: str | None= None, category: str | None = None, order: str | No
             query= query.order_by(db_product.name.desc())
         else:
             query= query.order_by(db_product.name)
-    if page:
+    if page and page >0:
         query= query.paginate(page, ITEMS_PER_PAGE)
     products: list[Product]= [Product(id= p.id, name= p.name, url_image= p.url_image, price= p.price, discount= p.discount, category= Category(id= p.category.id, name= p.category.name)) for p in query]
     db.close()
