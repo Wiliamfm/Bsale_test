@@ -24,3 +24,11 @@ async def root(q: str | None= None, category: str | None = None, order: str | No
     products: list[Product]= [Product(id= p.id, name= p.name, url_image= p.url_image, price= p.price, discount= p.discount, category= Category(id= p.category.id, name= p.category.name)) for p in query]
     db.close()
     return products
+
+@app.get("/category")
+async def category ():
+    db.connect()
+    query= db_category.select()
+    categories: list[Category]= [Category(id= c.id, name= c.name) for c in query]
+    db.close()
+    return categories
