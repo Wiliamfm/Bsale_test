@@ -1,7 +1,7 @@
 from decimal import Decimal
 from peewee import *
 
-db= MySQLDatabase(database= "bsale_test", user= "bsale_test", password= "bsale_test", host= "mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com")
+db= MySQLDatabase(database= "bsale_test", user= "bsale_test", password= "bsale_test", host= "mdb-test.c6vunyturrl6.us-west-1.rds.amazonaws.com", autoconnect= False)
 
 class Category(Model):
     id: int = IntegerField()

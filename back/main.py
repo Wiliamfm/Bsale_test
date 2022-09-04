@@ -1,10 +1,25 @@
 from fastapi import FastAPI
 from db_models import db, Product as db_product, Category as db_category
 from models import Product, Category
+from fastapi.middleware.cors import CORSMiddleware
+
+origins= [
+    "http://127.0.0.1:5500"
+]
 
 ITEMS_PER_PAGE= 10
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    #allow_origins=["*"],
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/")
 async def root(q: str | None= None, category: str | None = None, order: str | None = None, page: int | None = None):
     """ Get all products store in the database. Params: - query: filter products by 'query'. - category: filter products by categor - order: order products ascending or descending. - page: pagination for products. returns: List of products: """
